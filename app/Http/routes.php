@@ -25,8 +25,8 @@
 
 Route::group(['middleware' => ['web']], function () {
   Route::get('/', function () {
-       #return view('welcome');
-       return 'Laravel 5';
+       return view('welcome');
+       #return 'laravel 5';
    });
    Route::get('/books', 'BookController@getIndex');
    Route::get('/book/create', 'BookController@getCreate');
