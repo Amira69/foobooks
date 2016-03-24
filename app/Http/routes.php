@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +24,41 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
+  Route::get('/', function () {
+       #return view('welcome');
+       return 'Laravel 5';
+   });
+   Route::get('/books', 'BookController@getIndex');
+   Route::get('/book/create', 'BookController@getCreate');
+   Route::post('/book/create', 'BookController@postCreate');
+   Route::get('/book/show/{title?}', 'BookController@getShow');
+   Route::get('/practice', function() {
+
+    $data = Array('foo' => 'bar');
+    Debugbar::info($data);
+    Debugbar::error('Error!');
+    Debugbar::warning('Watch out…');
+    Debugbar::addMessage('Another message', 'mylabel');
+
+    return 'Practice';
+
+});
+
+Route::get('/practice', function() {
+
+    $random = new Rych\Random\Random();
+    return $random->getRandomString(8);
+
+});
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::get('/lorem', 'ParGenController@getGenerate');
+Route::get('/faker', 'ProfGenController@getProfile');
+/*
+   Route::get('/practice', function() {
+       $random = new Random();
+       return $random->getRandomString(10);
+   }); */
+
     //
 });
